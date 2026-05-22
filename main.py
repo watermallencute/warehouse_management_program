@@ -560,7 +560,7 @@ def search_record_menu():
                 if (keyword in customer["customer_id"].lower() or
                     keyword in customer["customer_name"].lower()):
 
-                    print("\Customer details:")
+                    print("\nCustomer details:")
                     print("-" * 85)
                     print(
                         f"{"ID":<10}  "
@@ -982,11 +982,365 @@ def create_menu():
         else:
             print("Invalid submenu!")
 
-def update_menu():
-    """Function for update the data
-    """
-    return
+def update_record_menu():
+    while True:
+        print("\n===== UPDATE RECORD MENU =====")
+        print("Choose a submenu you want to update:")
+        print("1. Update Products\n" \
+              "2. Update Customers\n" \
+              "3. Update Cashiers\n" \
+              "4. Update Suppliers\n" \
+              "5. Update Transactions\n" \
+              "6. Back to Sub Menu")
 
+        submenu = input("Enter the submenu number you want to update: ")
+
+        if submenu == "1":
+            product_id = input("Enter product ID: ").upper()
+
+            found = False
+
+            for product in products_list:
+                if product["product_id"] == product_id:
+                    found = True
+
+                    print("\n===== PRODUCT DETAILS =====")
+                    print("-" * 157)
+                    print(
+                        f"{"ID":<10}  "
+                        f"{"Product":<15}  "
+                        f"{"Category":<15}  "
+                        f"{"Price":<12}  "
+                        f"{"Stock":<10}  "
+                        f"{"Supplier Name":<35}  "
+                        f"{"Supplier Price":<15}  "
+                        f"{"Supply Date":<15}  "
+                        f"{"Stock Supplied":<15}"
+                    )
+                    print("-" * 157)
+                    print(
+                        f"{product["product_id"]:<10}  "
+                        f"{product["product_name"]:<15}  "
+                        f"{product["category"]:<15}  "
+                        f"Rp{product["price"]:<10,}  "
+                        f"{product["stock"]:<10}  "
+                        f"{product["supplier_name"]:<35}  "
+                        f"Rp{product["supplier_price"]:<13,}  "
+                        f"{product["supply_date"]:<15}  "
+                        f"{product["stock_supplied"]:<15}"
+                    )
+                    print("-" * 157)
+
+                    option = input("\nDo you want to update this data (yes/no)? ").lower()
+
+                    if option == "yes":
+                        column = input("Enter column name to update: ")
+
+                        if column in product:
+                            new_value = input("Enter new value: ")
+
+                            # Convert numeric data
+                            if column in ["price", "stock", "supplier_price", "stock_supplied"]:
+                                new_value = int(new_value)
+
+                            updated_product = product.copy()
+                            updated_product[column] = new_value
+
+                            if confirm_data(updated_product):
+                                product[column] = new_value
+                                print("Product updated successfully!")
+                            else:
+                                print("Update cancelled!")
+                        else:
+                            print("Column does not exist!")
+
+                    break
+
+            if not found:
+                print("Product data does not exist!")
+
+            if not back_to_submenu():
+                break
+
+        elif submenu == "2":
+            customer_id = input("Enter customer ID: ").upper()
+
+            found = False
+
+            for customer in customers_list:
+                if customer["customer_id"] == customer_id:
+                    found = True
+
+                    print("\n===== CUSTOMER DETAILS =====")
+                    print("-" * 85)
+                    print(
+                        f"{"ID":<10}  "
+                        f"{"Customer":<15}  "
+                        f"{"Gender":<15}  "
+                        f"{"Phone Number":<20}  "
+                        f"{"Address":<20}"
+                    )
+                    print("-" * 85)
+                    print(
+                        f"{customer["customer_id"]:<10}  "
+                        f"{customer["customer_name"]:<15}  "
+                        f"{customer["gender"]:<15}  "
+                        f"{customer["phone_number"]:<20}  "
+                        f"{customer["address"]:<20}"
+                    )
+                    print("-" * 85)
+
+                    option = input("\nDo you want to update this data (yes/no)? ").lower()
+
+                    if option == "yes":
+                        column = input("Enter column name to update: ")
+
+                        if column in customer:
+                            new_value = input("Enter new value: ")
+
+                            updated_customer = customer.copy()
+                            updated_customer[column] = new_value
+
+                            if confirm_data(updated_customer):
+                                customer[column] = new_value
+                                print("Customer updated successfully!")
+                            else:
+                                print("Update cancelled!")
+                        else:
+                            print("Column does not exist!")
+
+                    break
+
+            if not found:
+                print("Customer data does not exist!")
+
+            if not back_to_submenu():
+                break
+
+        elif submenu == "3":
+            cashier_id = input("Enter cashier ID: ").upper()
+
+            found = False
+
+            for cashier in cashiers_list:
+                if cashier["cashier_id"] == cashier_id:
+                    found = True
+
+                    print("\n===== CASHIER DETAILS =====")
+                    print("-" * 75)
+                    print(
+                        f"{"ID":<10}  "
+                        f"{"Cashier":<15}  "
+                        f"{"Username":<15}  "
+                        f"{"Password":<20}  "
+                        f"{"Shift":<15}"
+                    )
+                    print("-" * 75)
+                    print(
+                        f"{cashier["cashier_id"]:<10}  "
+                        f"{cashier["cashier_name"]:<15}  "
+                        f"{cashier["username"]:<15}  "
+                        f"{cashier["password"]:<20}  "
+                        f"{cashier["shift"]:<15}"
+                    )
+                    print("-" * 75)
+
+                    option = input("\nDo you want to update this data (yes/no)? ").lower()
+
+                    if option == "yes":
+                        column = input("Enter column name to update: ")
+
+                        if column in cashier:
+                            new_value = input("Enter new value: ")
+
+                            updated_cashier = cashier.copy()
+                            updated_cashier[column] = new_value
+
+                            if confirm_data(updated_cashier):
+                                cashier[column] = new_value
+                                print("Cashier updated successfully!")
+                            else:
+                                print("Update cancelled!")
+                        else:
+                            print("Column does not exist!")
+
+                    break
+
+            if not found:
+                print("Cashier data does not exist!")
+
+            if not back_to_submenu():
+                break
+
+        elif submenu == "4":
+            supplier_id = input("Enter supplier ID: ").upper()
+
+            found = False
+
+            for supplier in suppliers_list:
+                if supplier["supplier_id"] == supplier_id:
+                    found = True
+
+                    print("\n===== SUPPLIER DETAILS =====")
+                    print("-" * 117)
+                    print(
+                        f"{"ID":<10}  "
+                        f"{"Supplier":<35}  "
+                        f"{"Contact Number":<20}  "
+                        f"{"Address":<20}  "
+                        f"{"Email":<20}"
+                    )
+                    print("-" * 117)
+                    print(
+                        f"{supplier["supplier_id"]:<10}  "
+                        f"{supplier["supplier_name"]:<35}  "
+                        f"{supplier["contact_number"]:<20}  "
+                        f"{supplier["address"]:<20}  "
+                        f"{supplier["email"]:<20}"
+                    )
+                    print("-" * 117)
+
+                    option = input("\nDo you want to update this data (yes/no)? ").lower()
+
+                    if option == "yes":
+                        column = input("Enter column name to update: ")
+
+                        if column in supplier:
+                            new_value = input("Enter new value: ")
+
+                            updated_supplier = supplier.copy()
+                            updated_supplier[column] = new_value
+
+                            if confirm_data(updated_supplier):
+                                supplier[column] = new_value
+                                print("Supplier updated successfully!")
+                            else:
+                                print("Update cancelled!")
+                        else:
+                            print("Column does not exist!")
+
+                    break
+
+            if not found:
+                print("Supplier data does not exist!")
+
+            if not back_to_submenu():
+                break
+
+        elif submenu == "5":
+            transaction_id = input("Enter transaction ID: ").upper()
+
+            found = False
+
+            for transaction in transactions_list:
+                if transaction["transaction_id"] == transaction_id:
+                    found = True
+
+                    print("\n===== TRANSACTION DETAILS =====")
+                    print("-" * 145)
+                    print(
+                        f"{"No":<5}  "
+                        f"{"ID":<10}  "
+                        f"{"Date":<15}  "
+                        f"{"Customer":<15}  "
+                        f"{"Cashier":<15}  "
+                        f"{"Product":<15}  "
+                        f"{"Quantity":<10}  "
+                        f"{"Subtotal":<12}"
+                        f"{"Total price":<17}  "
+                        f"{"Payment Method":<15}"
+                    )
+                    print("-" * 145)
+
+                    for i, product in enumerate(transaction["products"], start=1):
+                        print(
+                            f"{i:<5}  "
+                            f"{transaction["transaction_id"]:<10}  "
+                            f"{transaction["transaction_date"]:<15}  "
+                            f"{transaction["customer_name"]:<15}  "
+                            f"{transaction["cashier_name"]:<15}  "
+                            f"{product["product_name"]:<15}  "
+                            f"{product["quantity"]:<10}  "
+                            f"Rp{product["sub_total"]:<10,}  "
+                            f"Rp{transaction["total_price"]:<15,}  "
+                            f"{transaction["payment_method"]:<15}"
+                        )
+
+                    print("-" * 145)
+
+                    option = input("\nDo you want to update this data (yes/no)? ").lower()
+
+                    if option == "yes":
+
+                        product_number = int(input("Choose product number to update: "))
+
+                        if 1 <= product_number <= len(transaction["products"]):
+
+                            selected_product = transaction["products"][product_number - 1]
+
+                            print("\nSelected product:")
+                            for key, value in selected_product.items():
+                                print(f"{key} : {value}")
+
+                            column = input("\nEnter column name to update: ")
+
+                            if column in selected_product:
+
+                                new_value = input("Enter new value: ")
+
+                                if column in ["quantity", "sub_total"]:
+                                    new_value = int(new_value)
+
+                                updated_product = selected_product.copy()
+                                updated_product[column] = new_value
+
+                                if confirm_data(updated_product):
+
+                                    selected_product[column] = new_value
+
+                                    print("Transaction updated successfully!")
+
+                                else:
+                                    print("Update cancelled!")
+
+                            else:
+                                print("Column does not exist!")
+
+                        else:
+                            print("Invalid product number!")
+
+                    break
+
+            if not found:
+                print("Transaction data does not exist!")
+
+            if not back_to_submenu():
+                break
+
+        elif submenu == "6":
+            break
+
+        else:
+            print("Invalid submenu!")
+
+def update_menu():
+    while True:
+        print("\n===== UPDATE MENU =====")
+        print("1. Update Records\n" \
+              "2. Back to Main Menu")
+        
+        submenu = input("Enter the submenu number: ")
+        if submenu == "1":
+            update_record_menu()
+
+        elif submenu == "2":
+            break
+        else:
+            print("Invalid submenu!")
+
+def delete_record_menu():
+    pass
+  
 def delete_menu():
     """Function for delete the data
     """
