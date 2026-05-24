@@ -325,7 +325,7 @@ def view_menu():
     menu = input("Enter the menu number you want to run: ")
     return menu
 
-def back_to_submenu():
+def back_to_submenu(): # Asks the user whether they want to continue using the submenu.
     while True:
         option = input("\nDo you want to choose another submenu (yes/no)? ").lower()
         if option == "yes":
@@ -453,7 +453,7 @@ def show_transaction_list():
             )
     print("-" * 137)
     
-def view_record_menu():
+def view_record_menu(): # Displays all available records based on selected submenu.
     while True:
         print("\n===== VIEW RECORD MENU =====")
         print("Choose a submenu you want to view:")
@@ -468,35 +468,55 @@ def view_record_menu():
 
         if submenu == "1":
             print("\n===== PRODUCT LIST =====")
-            show_product_list()
+
+            if len(products_list) == 0:
+                print("No product data available!")
+            else:
+                show_product_list()
 
             if not back_to_submenu():
                 break
 
         elif submenu == "2":
             print("\n===== CUSTOMER LIST =====")
-            show_customer_list()
+
+            if len(customers_list) == 0:
+                print("No customer data available!")
+            else:
+                show_customer_list()
 
             if not back_to_submenu():
                 break
 
         elif submenu == "3":
             print("\n===== CASHIER LIST =====")
-            show_cashier_list()
+
+            if len(cashiers_list) == 0:
+                print("No cashier data available!")
+            else:
+                show_cashier_list()
 
             if not back_to_submenu():
                 break
 
         elif submenu == "4":
             print("\n===== SUPPLIER LIST =====")
-            show_supplier_list()
+
+            if len(suppliers_list) == 0:
+                print("No supplier data available!")
+            else:
+                show_supplier_list()
 
             if not back_to_submenu():
                 break
 
         elif submenu == "5":
             print("\n===== TRANSACTION LIST =====")
-            show_transaction_list()
+
+            if len(transactions_list) == 0:
+                print("No transaction data available!")
+            else:
+                show_transaction_list()
 
             if not back_to_submenu():
                 break
@@ -510,7 +530,7 @@ def view_record_menu():
             if not back_to_submenu():
                 break
 
-def search_record_menu():
+def search_record_menu(): # Displays detail information if data exists.
     while True:
         print("\n===== SEARCH MENU =====")
         print("1. Search Products\n" \
@@ -576,7 +596,23 @@ def search_record_menu():
                     keyword in customer["customer_name"].lower()):
 
                     print("\n===== CUSTOMER DETAIL =====")
-                    show_customer_list()
+                    print("-" * 85)
+                    print(
+                        f"{"ID":<10}  "
+                        f"{"Customer":<15}  "
+                        f"{"Gender":<15}  "
+                        f"{"Phone Number":<20}  "
+                        f"{"Address":<20}"
+                    )
+                    print("-" * 85)
+                    print(
+                        f"{customer["customer_id"]:<10}  "
+                        f"{customer["customer_name"]:<15}  "
+                        f"{customer["gender"]:<15}  "
+                        f"{customer["phone_number"]:<20}  "
+                        f"{customer["address"]:<20}"
+                    )
+                    print("-" * 85)
 
                     found = True
 
@@ -596,7 +632,23 @@ def search_record_menu():
                     keyword in cashier["cashier_name"].lower()):
 
                     print("\n===== CASHIER DETAIL =====")
-                    show_cashier_list()
+                    print("-" * 75)
+                    print(
+                        f"{"ID":<10}  "
+                        f"{"Cashier":<15}  "
+                        f"{"Username":<15}  "
+                        f"{"Password":<20}  "
+                        f"{"Shift":<15}"
+                    )
+                    print("-" * 75)
+                    print(
+                        f"{cashier["cashier_id"]:<10}  "
+                        f"{cashier["cashier_name"]:<15}  "
+                        f"{cashier["username"]:<15}  "
+                        f"{cashier["password"]:<20}  "
+                        f"{cashier["shift"]:<15}"
+                    )
+                    print("-" * 75)
 
                     found = True
 
@@ -616,7 +668,23 @@ def search_record_menu():
                     keyword in supplier["supplier_name"].lower()):
 
                     print("\n===== SUPPLIER DETAIL =====")
-                    show_supplier_list()
+                    print("-" * 117)
+                    print(
+                        f"{"ID":<10}  "
+                        f"{"Supplier":<35}  "
+                        f"{"Contact Number":<20}  "
+                        f"{"Address":<20}  "
+                        f"{"Email":<20}"
+                    )
+                    print("-" * 117)
+                    print(
+                        f"{supplier["supplier_id"]:<10}  "
+                        f"{supplier["supplier_name"]:<35}  "
+                        f"{supplier["contact_number"]:<20}  "
+                        f"{supplier["address"]:<20}  "
+                        f"{supplier["email"]:<20}"
+                    )
+                    print("-" * 117)
 
                     found = True
 
@@ -636,7 +704,32 @@ def search_record_menu():
                     keyword in transaction["transaction_date"].lower()):
 
                     print("\n===== TRANSACTION DETAIL =====")
-                    show_transaction_list()
+                    print("-" * 137)
+                    print(
+                        f"{"ID":<10}  "
+                        f"{"Date":<15}  "
+                        f"{"Customer":<15}  "
+                        f"{"Cashier":<15}  "
+                        f"{"Product":<15}  "
+                        f"{"Quantity":<10}  "
+                        f"{"Subtotal":<12}"
+                        f"{"Total price":<17}  "
+                        f"{"Payment Method":<15}"
+                    )
+                    print("-" * 137)
+                    for product in transaction["products"]:
+                        print(
+                            f"{transaction["transaction_id"]:<10}  "
+                            f"{transaction["transaction_date"]:<15}  "
+                            f"{transaction["customer_name"]:<15}  "
+                            f"{transaction["cashier_name"]:<15}  "
+                            f"{product["product_name"]:<15}  "
+                            f"{product["quantity"]:<10}  "
+                            f"Rp{product["sub_total"]:<10,}  "
+                            f"Rp{transaction["total_price"]:<15,}  "
+                            f"{transaction["payment_method"]:<15}"
+                        )
+                    print("-" * 137)
 
                     found = True
 
@@ -666,20 +759,18 @@ def read_menu():
         else:
             print("Invalid submenu!")
     
-def show_detail(data):
+def show_detail(data): # Displays dictionary data in key-value format.
     for key, value in data.items():
         print(f"{key} : {value}")
 
-def confirm_data(data):
+def confirm_data(data): # Returns True if user confirms.
     print("\n===== DATA PREVIEW =====")
-
     show_detail(data)
 
     confirm = input("\nAre you sure (yes/no)? ").lower()
-
     return confirm == "yes"
 
-def create_record_menu():
+def create_record_menu(): # Add new records into lists
     while True:
         print("\n===== ADD RECORD MENU =====")
         print("Choose a submenu you want to add:")
@@ -927,7 +1018,7 @@ def create_menu():
         else:
             print("Invalid submenu!")
 
-def update_record_menu():
+def update_record_menu(): # Update existing records 
     while True:
         print("\n===== UPDATE RECORD MENU =====")
         print("Choose a submenu you want to update:")
@@ -1037,7 +1128,7 @@ def update_record_menu():
                     option = input("\nDo you want to update this data (yes/no)? ").lower()
 
                     if option == "yes":
-                        column = input("Enter column name to update (customer_id / customer_name / gemder / phone_number / address): ")
+                        column = input("Enter column name to update (customer_id / customer_name / gender / phone_number / address): ")
 
                         if column in customer:
                             new_value = input("Enter new value: ")
@@ -1224,7 +1315,7 @@ def update_record_menu():
                             print("\nSelected product:")
                             show_detail(selected_product)
 
-                            column = input("\nEnter column name to update (transaction_date / customer_name / cashier_name / payment_method / product_name / quantity / sub_total / total_price / payment_method): ")
+                            column = input("\nEnter column name to update (transaction_date / customer_name / cashier_name / product_name / quantity / sub_total / total_price / payment_method): ")
 
                             if column in transaction:
                                 new_value = input("Enter new value: ")
@@ -1292,7 +1383,7 @@ def update_menu():
         else:
             print("Invalid submenu!")
 
-def delete_record_menu():
+def delete_record_menu(): # Delete unused records
     while True:
         print("\n===== DELETE RECORD MENU =====")
         print("Choose a submenu you want to delete:")
