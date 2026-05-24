@@ -325,7 +325,7 @@ def view_menu():
     menu = input("Enter the menu number you want to run: ")
     return menu
 
-def back_to_submenu(): # Asks the user whether they want to continue using the submenu.
+def back_to_submenu(): # Asks the user whether they want to continue using the submenu
     while True:
         option = input("\nDo you want to choose another submenu (yes/no)? ").lower()
         if option == "yes":
@@ -453,7 +453,7 @@ def show_transaction_list():
             )
     print("-" * 137)
     
-def view_record_menu(): # Displays all available records based on selected submenu.
+def view_record_menu(): # Displays all available records based on selected submenu
     while True:
         print("\n===== VIEW RECORD MENU =====")
         print("Choose a submenu you want to view:")
@@ -530,7 +530,7 @@ def view_record_menu(): # Displays all available records based on selected subme
             if not back_to_submenu():
                 break
 
-def search_record_menu(): # Displays detail information if data exists.
+def search_record_menu(): # Displays detail information if data exists
     while True:
         print("\n===== SEARCH MENU =====")
         print("1. Search Products\n" \
@@ -759,11 +759,11 @@ def read_menu():
         else:
             print("Invalid submenu!")
     
-def show_detail(data): # Displays dictionary data in key-value format.
+def show_detail(data): # Displays dictionary data in key-value format
     for key, value in data.items():
         print(f"{key} : {value}")
-
-def confirm_data(data): # Returns True if user confirms.
+ 
+def confirm_data(data): # Returns True if user confirms
     print("\n===== DATA PREVIEW =====")
     show_detail(data)
 
