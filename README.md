@@ -1,4 +1,4 @@
-# Python CRUD Application for [Business Domain]
+# Python CRUD Application for Warehouse Management System
 
 A comprehensive Python application for managing warehouse management data with Create, Read, Update, and Delete (CRUD) operations.
 
