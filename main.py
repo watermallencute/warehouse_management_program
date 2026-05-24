@@ -335,6 +335,124 @@ def back_to_submenu():
         else:
             print("Invalid input!")
 
+def show_product_list():
+    print("-" * 157)
+    print(
+        f"{"ID":<10}  "
+        f"{"Product":<15}  "
+        f"{"Category":<15}  "
+        f"{"Price":<12}  "
+        f"{"Stock":<10}  "
+        f"{"Supplier Name":<35}  "
+        f"{"Supplier Price":<15}  "
+        f"{"Supply Date":<15}  "
+        f"{"Stock Supplied":<15}"
+    )
+    print("-" * 157)
+    for product in products_list:
+        print(
+            f"{product["product_id"]:<10}  "
+            f"{product["product_name"]:<15}  "
+            f"{product["category"]:<15}  "
+            f"Rp{product["price"]:<10,}  "
+            f"{product["stock"]:<10}  "
+            f"{product["supplier_name"]:<35}  "
+            f"Rp{product["supplier_price"]:<13,}  "
+            f"{product["supply_date"]:<15}  "
+            f"{product["stock_supplied"]:<15}"
+        )
+    print("-" * 157)
+
+def show_customer_list():
+    print("-" * 85)
+    print(
+        f"{"ID":<10}  "
+        f"{"Customer":<15}  "
+        f"{"Gender":<15}  "
+        f"{"Phone Number":<20}  "
+        f"{"Address":<20}"
+    )
+    print("-" * 85)
+    for customer in customers_list:
+        print(
+            f"{customer["customer_id"]:<10}  "
+            f"{customer["customer_name"]:<15}  "
+            f"{customer["gender"]:<15}  "
+            f"{customer["phone_number"]:<20}  "
+            f"{customer["address"]:<20}"
+        )
+    print("-" * 85)
+
+def show_cashier_list():
+    print("-" * 75)
+    print(
+        f"{"ID":<10}  "
+        f"{"Cashier":<15}  "
+        f"{"Username":<15}  "
+        f"{"Password":<20}  "
+        f"{"Shift":<15}"
+    )
+    print("-" * 75)
+    for cashier in cashiers_list:
+        print(
+            f"{cashier["cashier_id"]:<10}  "
+            f"{cashier["cashier_name"]:<15}  "
+            f"{cashier["username"]:<15}  "
+            f"{cashier["password"]:<20}  "
+            f"{cashier["shift"]:<15}"
+        )
+    print("-" * 75)
+
+def show_supplier_list():
+    print("-" * 117)
+    print(
+        f"{"ID":<10}  "
+        f"{"Supplier":<35}  "
+        f"{"Contact Number":<20}  "
+        f"{"Address":<20}  "
+        f"{"Email":<20}"
+    )
+    print("-" * 117)
+    for supplier in suppliers_list:
+        print(
+            f"{supplier["supplier_id"]:<10}  "
+            f"{supplier["supplier_name"]:<35}  "
+            f"{supplier["contact_number"]:<20}  "
+            f"{supplier["address"]:<20}  "
+            f"{supplier["email"]:<20}"
+        )
+    print("-" * 117)
+
+def show_transaction_list():
+    print("-" * 137)
+    print(
+        f"{"ID":<10}  "
+        f"{"Date":<15}  "
+        f"{"Customer":<15}  "
+        f"{"Cashier":<15}  "
+        f"{"Product":<15}  "
+        f"{"Quantity":<10}  "
+        f"{"Subtotal":<12}"
+        f"{"Total price":<17}  "
+        f"{"Payment Method":<15}"
+    )
+    print("-" * 137)
+
+    for transaction in transactions_list:
+        for product in transaction["products"]:
+            print(
+                f"{transaction["transaction_id"]:<10}  "
+                f"{transaction["transaction_date"]:<15}  "
+                f"{transaction["customer_name"]:<15}  "
+                f"{transaction["cashier_name"]:<15}  "
+                f"{product["product_name"]:<15}  "
+                f"{product["quantity"]:<10}  "
+                f"Rp{product["sub_total"]:<10,}  "
+                f"Rp{transaction["total_price"]:<15,}  "
+                f"{transaction["payment_method"]:<15}"
+            )
+    print("-" * 137)
+    
 def view_record_menu():
     while True:
         print("\n===== VIEW RECORD MENU =====")
@@ -350,138 +468,35 @@ def view_record_menu():
 
         if submenu == "1":
             print("\n===== PRODUCT LIST =====")
-            print("-" * 157)
-            print(
-                f"{"ID":<10}  "
-                f"{"Product":<15}  "
-                f"{"Category":<15}  "
-                f"{"Price":<12}  "
-                f"{"Stock":<10}  "
-                f"{"Supplier Name":<35}  "
-                f"{"Supplier Price":<15}  "
-                f"{"Supply Date":<15}  "
-                f"{"Stock Supplied":<15}"
-            )
-            print("-" * 157)
-            for product in products_list:
-                print(
-                    f"{product["product_id"]:<10}  "
-                    f"{product["product_name"]:<15}  "
-                    f"{product["category"]:<15}  "
-                    f"Rp{product["price"]:<10,}  "
-                    f"{product["stock"]:<10}  "
-                    f"{product["supplier_name"]:<35}  "
-                    f"Rp{product["supplier_price"]:<13,}  "
-                    f"{product["supply_date"]:<15}  "
-                    f"{product["stock_supplied"]:<15}"
-                )
-            print("-" * 157)
+            show_product_list()
 
             if not back_to_submenu():
                 break
 
         elif submenu == "2":
             print("\n===== CUSTOMER LIST =====")
-            print("-" * 85)
-            print(
-                f"{"ID":<10}  "
-                f"{"Customer":<15}  "
-                f"{"Gender":<15}  "
-                f"{"Phone Number":<20}  "
-                f"{"Address":<20}"
-            )
-            print("-" * 85)
-            for customer in customers_list:
-                print(
-                    f"{customer["customer_id"]:<10}  "
-                    f"{customer["customer_name"]:<15}  "
-                    f"{customer["gender"]:<15}  "
-                    f"{customer["phone_number"]:<20}  "
-                    f"{customer["address"]:<20}"
-                )
-            print("-" * 85)
+            show_customer_list()
 
             if not back_to_submenu():
                 break
 
         elif submenu == "3":
             print("\n===== CASHIER LIST =====")
-            print("-" * 75)
-            print(
-                f"{"ID":<10}  "
-                f"{"Cashier":<15}  "
-                f"{"Username":<15}  "
-                f"{"Password":<20}  "
-                f"{"Shift":<15}"
-            )
-            print("-" * 75)
-            for cashier in cashiers_list:
-                print(
-                    f"{cashier["cashier_id"]:<10}  "
-                    f"{cashier["cashier_name"]:<15}  "
-                    f"{cashier["username"]:<15}  "
-                    f"{cashier["password"]:<20}  "
-                    f"{cashier["shift"]:<15}"
-                )
-            print("-" * 75)
+            show_cashier_list()
 
             if not back_to_submenu():
                 break
 
         elif submenu == "4":
             print("\n===== SUPPLIER LIST =====")
-            print("-" * 117)
-            print(
-                f"{"ID":<10}  "
-                f"{"Supplier":<35}  "
-                f"{"Contact Number":<20}  "
-                f"{"Address":<20}  "
-                f"{"Email":<20}"
-            )
-            print("-" * 117)
-            for supplier in suppliers_list:
-                print(
-                    f"{supplier["supplier_id"]:<10}  "
-                    f"{supplier["supplier_name"]:<35}  "
-                    f"{supplier["contact_number"]:<20}  "
-                    f"{supplier["address"]:<20}  "
-                    f"{supplier["email"]:<20}"
-                )
-            print("-" * 117)
+            show_supplier_list()
 
             if not back_to_submenu():
                 break
 
         elif submenu == "5":
             print("\n===== TRANSACTION LIST =====")
-            print("-" * 137)
-            print(
-                f"{"ID":<10}  "
-                f"{"Date":<15}  "
-                f"{"Customer":<15}  "
-                f"{"Cashier":<15}  "
-                f"{"Product":<15}  "
-                f"{"Quantity":<10}  "
-                f"{"Subtotal":<12}"
-                f"{"Total price":<17}  "
-                f"{"Payment Method":<15}"
-            )
-            print("-" * 137)
-
-            for transaction in transactions_list:
-                for product in transaction["products"]:
-                    print(
-                        f"{transaction["transaction_id"]:<10}  "
-                        f"{transaction["transaction_date"]:<15}  "
-                        f"{transaction["customer_name"]:<15}  "
-                        f"{transaction["cashier_name"]:<15}  "
-                        f"{product["product_name"]:<15}  "
-                        f"{product["quantity"]:<10}  "
-                        f"Rp{product["sub_total"]:<10,}  "
-                        f"Rp{transaction["total_price"]:<15,}  "
-                        f"{transaction["payment_method"]:<15}"
-                    )
-            print("-" * 137)
+            show_transaction_list()
 
             if not back_to_submenu():
                 break
@@ -516,7 +531,7 @@ def search_record_menu():
                 if (keyword in product["product_id"].lower() or
                     keyword in product["product_name"].lower()):
 
-                    print("\nProduct details:")
+                    print("\n===== PRODUCT DETAIL =====")
                     print("-" * 157)
                     print(
                         f"{"ID":<10}  "
@@ -560,24 +575,8 @@ def search_record_menu():
                 if (keyword in customer["customer_id"].lower() or
                     keyword in customer["customer_name"].lower()):
 
-                    print("\nCustomer details:")
-                    print("-" * 85)
-                    print(
-                        f"{"ID":<10}  "
-                        f"{"Customer":<15}  "
-                        f"{"Gender":<15}  "
-                        f"{"Phone Number":<20}  "
-                        f"{"Address":<20}"
-                    )
-                    print("-" * 85)
-                    print(
-                        f"{customer["customer_id"]:<10}  "
-                        f"{customer["customer_name"]:<15}  "
-                        f"{customer["gender"]:<15}  "
-                        f"{customer["phone_number"]:<20}  "
-                        f"{customer["address"]:<20}"
-                    )
-                    print("-" * 85)
+                    print("\n===== CUSTOMER DETAIL =====")
+                    show_customer_list()
 
                     found = True
 
@@ -596,24 +595,8 @@ def search_record_menu():
                 if (keyword in cashier["cashier_id"].lower() or
                     keyword in cashier["cashier_name"].lower()):
 
-                    print("\nCashier details: ")
-                    print("-" * 75)
-                    print(
-                        f"{"ID":<10}  "
-                        f"{"Cashier":<15}  "
-                        f"{"Username":<15}  "
-                        f"{"Password":<20}  "
-                        f"{"Shift":<15}"
-                    )
-                    print("-" * 75)
-                    print(
-                        f"{cashier["cashier_id"]:<10}  "
-                        f"{cashier["cashier_name"]:<15}  "
-                        f"{cashier["username"]:<15}  "
-                        f"{cashier["password"]:<20}  "
-                        f"{cashier["shift"]:<15}"
-                    )
-                    print("-" * 75)
+                    print("\n===== CASHIER DETAIL =====")
+                    show_cashier_list()
 
                     found = True
 
@@ -632,24 +615,8 @@ def search_record_menu():
                 if (keyword in supplier["supplier_id"].lower() or
                     keyword in supplier["supplier_name"].lower()):
 
-                    print("\nSupplier details:")
-                    print("-" * 117)
-                    print(
-                        f"{"ID":<10}  "
-                        f"{"Supplier":<35}  "
-                        f"{"Contact Number":<20}  "
-                        f"{"Address":<20}  "
-                        f"{"Email":<20}"
-                    )
-                    print("-" * 117)
-                    print(
-                        f"{supplier["supplier_id"]:<10}  "
-                        f"{supplier["supplier_name"]:<35}  "
-                        f"{supplier["contact_number"]:<20}  "
-                        f"{supplier["address"]:<20}  "
-                        f"{supplier["email"]:<20}"
-                    )
-                    print("-" * 117)
+                    print("\n===== SUPPLIER DETAIL =====")
+                    show_supplier_list()
 
                     found = True
 
@@ -668,33 +635,8 @@ def search_record_menu():
                 if (keyword in transaction["transaction_id"].lower() or
                     keyword in transaction["transaction_date"].lower()):
 
-                    print("\nTransaction details:")
-                    print("-" * 137)
-                    print(
-                        f"{"ID":<10}  "
-                        f"{"Date":<15}  "
-                        f"{"Customer":<15}  "
-                        f"{"Cashier":<15}  "
-                        f"{"Product":<15}  "
-                        f"{"Quantity":<10}  "
-                        f"{"Subtotal":<12}"
-                        f"{"Total price":<17}  "
-                        f"{"Payment Method":<15}"
-                    )
-                    print("-" * 137)
-                    for product in transaction["products"]:
-                        print(
-                            f"{transaction["transaction_id"]:<10}  "
-                            f"{transaction["transaction_date"]:<15}  "
-                            f"{transaction["customer_name"]:<15}  "
-                            f"{transaction["cashier_name"]:<15}  "
-                            f"{product["product_name"]:<15}  "
-                            f"{product["quantity"]:<10}  "
-                            f"Rp{product["sub_total"]:<10,}  "
-                            f"Rp{transaction["total_price"]:<15,}  "
-                            f"{transaction["payment_method"]:<15}"
-                        )
-                    print("-" * 137)
+                    print("\n===== TRANSACTION DETAIL =====")
+                    show_transaction_list()
 
                     found = True
 
@@ -724,11 +666,14 @@ def read_menu():
         else:
             print("Invalid submenu!")
     
+def show_detail(data):
+    for key, value in data.items():
+        print(f"{key} : {value}")
+
 def confirm_data(data):
     print("\n===== DATA PREVIEW =====")
 
-    for key, value in data.items():
-        print(f"{key} : {value}")
+    show_detail(data)
 
     confirm = input("\nAre you sure (yes/no)? ").lower()
 
@@ -760,7 +705,7 @@ def create_record_menu():
 
             else:
                 product_name = input("Enter product name: ")
-                category = input("Enter category: ")
+                category = input("Enter category (Food / Household / Personal care / Snack / Beverage): ")
                 price = int(input("Enter selling price: "))
                 stock = int(input("Enter stock: "))
                 supplier_name = input("Enter supplier name: ")
@@ -803,7 +748,7 @@ def create_record_menu():
 
             else:
                 customer_name = input("Enter customer name: ")
-                gender = input("Enter gender: ")
+                gender = input("Enter gender (Female / Male): ")
                 phone_number = input("Enter phone number: ")
                 address = input("Enter address: ")
 
@@ -907,10 +852,10 @@ def create_record_menu():
                 print("Transaction ID already exists!")
 
             else:
-                transaction_date = input("Enter transaction date: ")
+                transaction_date = input("Enter transaction date (YYYY-MM-DD): ")
                 customer_name = input("Enter customer name: ")
                 cashier_name = input("Enter cashier name: ")
-                payment_method = input("Enter payment method: ")
+                payment_method = input("Enter payment method (Cash / Credit card / Debit card / QRIS): ")
 
                 products = []
                 total_price = 0
@@ -966,7 +911,7 @@ def create_record_menu():
             break
 
         else:
-            pass
+            print("Invalid submenu!")
 
 def create_menu():
     while True:
@@ -1034,12 +979,11 @@ def update_record_menu():
                     option = input("\nDo you want to update this data (yes/no)? ").lower()
 
                     if option == "yes":
-                        column = input("Enter column name to update: ")
+                        column = input("Enter column name to update (product_id / product_name / category / price / stock / supplier_name / supplier_price / supply_date / stock_supplied): ")
 
                         if column in product:
                             new_value = input("Enter new value: ")
 
-                            # Convert numeric data
                             if column in ["price", "stock", "supplier_price", "stock_supplied"]:
                                 new_value = int(new_value)
 
@@ -1093,7 +1037,7 @@ def update_record_menu():
                     option = input("\nDo you want to update this data (yes/no)? ").lower()
 
                     if option == "yes":
-                        column = input("Enter column name to update: ")
+                        column = input("Enter column name to update (customer_id / customer_name / gemder / phone_number / address): ")
 
                         if column in customer:
                             new_value = input("Enter new value: ")
@@ -1148,7 +1092,7 @@ def update_record_menu():
                     option = input("\nDo you want to update this data (yes/no)? ").lower()
 
                     if option == "yes":
-                        column = input("Enter column name to update: ")
+                        column = input("Enter column name to update (cashier_id / cashier_name / username / password / shift): ")
 
                         if column in cashier:
                             new_value = input("Enter new value: ")
@@ -1203,7 +1147,7 @@ def update_record_menu():
                     option = input("\nDo you want to update this data (yes/no)? ").lower()
 
                     if option == "yes":
-                        column = input("Enter column name to update: ")
+                        column = input("Enter column name to update (supplier_id / supplier_name / contact_number / address / email): ")
 
                         if column in supplier:
                             new_value = input("Enter new value: ")
@@ -1265,7 +1209,6 @@ def update_record_menu():
                             f"Rp{transaction["total_price"]:<15,}  "
                             f"{transaction["payment_method"]:<15}"
                         )
-
                     print("-" * 145)
 
                     option = input("\nDo you want to update this data (yes/no)? ").lower()
@@ -1279,13 +1222,26 @@ def update_record_menu():
                             selected_product = transaction["products"][product_number - 1]
 
                             print("\nSelected product:")
-                            for key, value in selected_product.items():
-                                print(f"{key} : {value}")
+                            show_detail(selected_product)
 
-                            column = input("\nEnter column name to update: ")
+                            column = input("\nEnter column name to update (transaction_date / customer_name / cashier_name / payment_method / product_name / quantity / sub_total / total_price / payment_method): ")
 
-                            if column in selected_product:
+                            if column in transaction:
+                                new_value = input("Enter new value: ")
 
+                                updated_transaction = transaction.copy()
+                                updated_transaction[column] = new_value
+
+                                if confirm_data(updated_transaction):
+
+                                    transaction[column] = new_value
+
+                                    print("Transaction updated successfully!")
+
+                                else:
+                                    print("Update cancelled!")
+
+                            elif column in selected_product:
                                 new_value = input("Enter new value: ")
 
                                 if column in ["quantity", "sub_total"]:
@@ -1295,10 +1251,8 @@ def update_record_menu():
                                 updated_product[column] = new_value
 
                                 if confirm_data(updated_product):
-
                                     selected_product[column] = new_value
-
-                                    print("Transaction updated successfully!")
+                                    print("Product updated successfully!")
 
                                 else:
                                     print("Update cancelled!")
@@ -1575,14 +1529,41 @@ def delete_record_menu():
                         )
                     print("-" * 145)
 
-                    option = input("\nDo you want to delete this data (yes/no)? ").lower()
+                    option = input("\nDo you want to delete product data (yes/no)? ").lower()
 
                     if option == "yes":
-                        transactions_list.remove(transaction)
-                        print("Transaction deleted successfully!")
+
+                        product_number = int(input("Choose product number to delete: "))
+
+                        if 1 <= product_number <= len(transaction["products"]):
+
+                            selected_product = transaction["products"][product_number - 1]
+
+                            print("\nSelected product:")
+                            show_detail(selected_product)
+
+                            confirm = input("\nAre you sure to delete this product (yes/no)? ").lower()
+
+                            if confirm == "yes":
+
+                                transaction["total_price"] -= selected_product["sub_total"]
+
+                                transaction["products"].remove(selected_product)
+
+                                print("Product deleted successfully!")
+
+                                if len(transaction["products"]) == 0:
+                                    transactions_list.remove(transaction)
+                                    print("Transaction has no products left and was deleted!")
+
+                            else:
+                                print("Delete cancelled!")
+
+                        else:
+                            print("Invalid product number!")
+
                     else:
                         print("Delete cancelled!")
-
                     break
 
             if not found:
