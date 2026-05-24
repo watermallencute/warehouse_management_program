@@ -760,7 +760,7 @@ def read_menu():
             print("Invalid submenu!")
     
 def show_detail(data): # Displays dictionary data in key-value format.
-    for key, value in data.items(): 
+    for key, value in data.items():
         print(f"{key} : {value}")
 
 def confirm_data(data): # Returns True if user confirms.
