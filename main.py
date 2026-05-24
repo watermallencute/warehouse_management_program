@@ -1003,7 +1003,7 @@ def create_record_menu(): # Add new records into lists
 
         else:
             print("Invalid submenu!")
- 
+
 def create_menu():
     while True:
         print("\n===== VIEW MENU =====")
