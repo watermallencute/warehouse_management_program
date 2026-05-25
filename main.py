@@ -315,6 +315,15 @@ transactions_list = [
 ]
 
 # /===== Feature Program =====/
+def generate_id(prefix, data_list, key):
+    if len(data_list) == 0:
+        return f"{prefix}001"
+
+    last_id = data_list[-1][key]
+    number = int(last_id.replace(prefix, "")) + 1
+
+    return f"{prefix}{str(number).zfill(3)}"
+
 def view_menu():
     print("\nMenu Lists")
     print("1. View records\n" \
@@ -783,7 +792,8 @@ def create_record_menu(): # Add new records into lists
 
         submenu = input("Enter the submenu number you want to add: ")
         if submenu == "1":
-            product_id = input("Enter product ID: ").upper()
+            product_id = generate_id("PRO", products_list, "product_id")
+            print(f"Product ID: {product_id}")
 
             found = False
             for product in products_list:
@@ -826,7 +836,8 @@ def create_record_menu(): # Add new records into lists
                 break
 
         elif submenu == "2":
-            customer_id = input("Enter customer ID: ").upper()
+            customer_id = generate_id("CUS", customers_list, "customer_id")
+            print(f"Customer ID: {customer_id}")
 
             found = False
             for customer in customers_list:
@@ -861,7 +872,8 @@ def create_record_menu(): # Add new records into lists
                 break
 
         elif submenu == "3":
-            cashier_id = input("Enter cashier ID: ").upper()
+            cashier_id = generate_id("CAS", cashiers_list, "cashier_id")
+            print(f"Cashier ID: {cashier_id}")
 
             found = False
             for cashier in cashiers_list:
@@ -896,7 +908,8 @@ def create_record_menu(): # Add new records into lists
                 break
 
         elif submenu == "4":
-            supplier_id = input("Enter supplier ID: ").upper()
+            supplier_id = generate_id("SUP", suppliers_list, "supplier_id")
+            print(f"Supplier ID: {supplier_id}")
 
             found = False
             for supplier in suppliers_list:
@@ -931,7 +944,8 @@ def create_record_menu(): # Add new records into lists
                 break
 
         elif submenu == "5":
-            transaction_id = input("Enter transaction ID: ").upper()
+            transaction_id = generate_id("TRA", transactions_list, "transaction_id")
+            print(f"Transaction ID: {transaction_id}")
 
             found = False
             for transaction in transactions_list:
