@@ -1067,7 +1067,7 @@ def update_record_menu(): # Update existing records
                     )
                     print("-" * 157)
 
-                    option = input("\nDo you want to update this data (yes/no)? ").lower()
+                    option = input("\nDo you want to update this product (yes/no)? ").lower()
 
                     if option == "yes":
                         column = input("Enter column name to update (product_id / product_name / category / price / stock / supplier_name / supplier_price / supply_date / stock_supplied): ")
@@ -1125,7 +1125,7 @@ def update_record_menu(): # Update existing records
                     )
                     print("-" * 85)
 
-                    option = input("\nDo you want to update this data (yes/no)? ").lower()
+                    option = input("\nDo you want to update this customer (yes/no)? ").lower()
 
                     if option == "yes":
                         column = input("Enter column name to update (customer_id / customer_name / gender / phone_number / address): ")
@@ -1180,7 +1180,7 @@ def update_record_menu(): # Update existing records
                     )
                     print("-" * 75)
 
-                    option = input("\nDo you want to update this data (yes/no)? ").lower()
+                    option = input("\nDo you want to update this cashier (yes/no)? ").lower()
 
                     if option == "yes":
                         column = input("Enter column name to update (cashier_id / cashier_name / username / password / shift): ")
@@ -1235,7 +1235,7 @@ def update_record_menu(): # Update existing records
                     )
                     print("-" * 117)
 
-                    option = input("\nDo you want to update this data (yes/no)? ").lower()
+                    option = input("\nDo you want to update this supplier (yes/no)? ").lower()
 
                     if option == "yes":
                         column = input("Enter column name to update (supplier_id / supplier_name / contact_number / address / email): ")
@@ -1302,7 +1302,7 @@ def update_record_menu(): # Update existing records
                         )
                     print("-" * 145)
 
-                    option = input("\nDo you want to update this data (yes/no)? ").lower()
+                    option = input("\nDo you want to update this transaction (yes/no)? ").lower()
 
                     if option == "yes":
 
@@ -1432,7 +1432,7 @@ def delete_record_menu(): # Delete unused records
                     )
                     print("-" * 157)
 
-                    option = input("\nDo you want to delete this data (yes/no)? ").lower()
+                    option = input("\nDo you want to delete this product (yes/no)? ").lower()
 
                     if option == "yes":
                         products_list.remove(product)
@@ -1476,7 +1476,7 @@ def delete_record_menu(): # Delete unused records
                     )
                     print("-" * 85)
 
-                    option = input("\nDo you want to delete this data (yes/no)? ").lower()
+                    option = input("\nDo you want to delete this customer (yes/no)? ").lower()
 
                     if option == "yes":
                         customers_list.remove(customer)
@@ -1520,7 +1520,7 @@ def delete_record_menu(): # Delete unused records
                     )
                     print("-" * 75)
 
-                    option = input("\nDo you want to delete this data (yes/no)? ").lower()
+                    option = input("\nDo you want to delete this cashier (yes/no)? ").lower()
 
                     if option == "yes":
                         cashiers_list.remove(cashier)
@@ -1564,7 +1564,7 @@ def delete_record_menu(): # Delete unused records
                     )
                     print("-" * 117)
 
-                    option = input("\nDo you want to delete this data (yes/no)? ").lower()
+                    option = input("\nDo you want to delete this supplier (yes/no)? ").lower()
 
                     if option == "yes":
                         suppliers_list.remove(supplier)
@@ -1620,7 +1620,7 @@ def delete_record_menu(): # Delete unused records
                         )
                     print("-" * 145)
 
-                    option = input("\nDo you want to delete product data (yes/no)? ").lower()
+                    option = input("\nDo you want to delete product transaction (yes/no)? ").lower()
 
                     if option == "yes":
 
