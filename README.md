@@ -1,60 +1,56 @@
-# Python CRUD Application for [Business Domain]
+# Python CRUD Application for Warehouse Management System
 
-A comprehensive Python application for managing [Data Entity] data with Create, Read, Update, and Delete (CRUD) operations.
+A comprehensive Python application for managing warehouse management data with Create, Read, Update, and Delete (CRUD) operations.
 
 ## Business Understanding
 
-This project caters to the [Industry/Business Domain] industry, specifically addressing the need to manage [Data Entity] data efficiently. [Data Entity] plays a crucial role in [Explain the importance of data entity in business processes].
+This project caters to the retail and warehouse management industry, specifically addressing the need to manage products, customers, cashiers, suppliers, and transaction data efficiently. These data entities plays a crucial role in inventory control, sales transactions, supplier management, and customer service processes..
 
 **Benefits:**
 
 * Improved data accuracy and consistency
 * Streamlined data management processes
 * Enhanced decision-making through readily available data
-* ... (List additional benefits relevant to the business)
+* Easier monitoring of stock availability and product supply
+* Better organization of customer, cashier, and supplier records
+* Faster transaction processing and record maintenance
 
 **Target Users:**
 
-This application is designed for [Target Users] (e.g., sales representatives, inventory managers, customer support agents) within the organization to facilitate their [Tasks/Activities] related to [Data Entity].
+This application is designed for warehouse staff, cashiers, and store administrators within the organization to facilitate their inventory management, transaction handling, customer management, and supplier management activities related to warehouse operations.
 
 ## Features
 
 * **Create:**
-    * Add new [Data Entity] entries with essential details like [List relevant fields].
-    * Implement validation rules to ensure data integrity (if applicable, e.g., unique identifiers, data type checks).
+    * Add new product, customer, cashier, supplier, and transaction entries with essential details like IDs, names, categories, prices, stock, contact information, and payment methods.
+    * Implement validation rules to ensure data integrity such as unique IDs and numeric value checks.
 * **Read:**
-    * Search and retrieve specific [Data Entity] records by applying filters based on [Searchable fields].
-    * Display comprehensive information for each [Data Entity] in a user-friendly format.
-    * Integrate pagination and sorting capabilities for large datasets (if applicable).
+    * Search and retrieve specific records by applying filters based on IDs, names, or transaction dates.
+    * Display comprehensive information for each entity in a user-friendly tabular format.
 * **Update:**
-    * Modify existing [Data Entity] data to reflect changes in [Attributes/Properties].
+    * Modify existing records to reflect changes in product details, customer information, supplier data, cashier data, or transaction records.
     * Provide clear confirmation or error messages based on update success or failure.
 * **Delete:**
-    * Allow for the removal of unwanted [Data Entity] records with appropriate authorization checks (if applicable).
-    * Implement soft delete functionality to prevent permanent data loss (optional, depending on business needs).
-    * Consider offering data archiving capabilities (optional).
+    * Allow for the removal of unwanted records with appropriate authorization checks.
+    * Automatically remove transaction data when all products in a transaction have been deleted.
 * **Security:**
-    * Implement user authentication and authorization mechanisms (if sensitive data is involved) to control access to different CRUD operations.
-    * ... (Specify additional security features as needed)
+    * Input validation to reduce invalid data entries.
+    * Confirmation prompts before create, update and delete operations.
 * **Reporting:**
-    * Generate reports or summaries based on [Data Entity] data to support [Business Functions] (optional).
-    * Export data in various formats (e.g., CSV, Excel) for further analysis (optional).
+    * Display organized tables for products, customers, cashiers, suppliers, and transactions.
+    * Search functionality for quick record lookup.
 
 ## Installation
 
 1. **Prerequisites:**
-    * Python version (specify the required version)
-    * Additional dependencies (list any required packages)
+    * Python 3.10.13
+    * No additional external dependencies required
 
 2. **Installation:**
     ```bash
-    git clone https://github.com/<your-username>/<your-repo-name>.git
-    cd <your-repo-name>
-    pip install -r requirements.txt  # If using a requirements.txt file
+    git clone https://github.com/<watermallencute>/<warehouse_management_program>.git
+    cd <warehouse_management_program>
     ```
-
-3. **Database Setup (if applicable):**
-    Follow specific instructions for configuring your database connection, aligning with the business's chosen database management system.
 
 ## Usage
 
@@ -64,17 +60,54 @@ This application is designed for [Target Users] (e.g., sales representatives, in
     ```
 
 2. **CRUD Operations:**
-    * **Create:** Add a new [Data Entity] record, for example, a new customer in a customer management system, providing details like name, contact information, and preferences.
-    * **Read:** Search and retrieve customer information by name, ID, or other relevant criteria.
-    * **Update:** Modify customer details, such as updating their address or contact details.
-    * **Delete:** Remove a customer record from the system (with appropriate authorization, if applicable).
+    * **Create:** Add a new product, customer, supplier, cashier, or transaction record.
+    * **Read:** Search and retrieve records by ID, name, or transaction date.
+    * **Update:** Modify existing records such as stock, prices, addresses, or transaction details.
+    * **Delete:** Remove records from the system with confirmation prompts.
 
 ## Data Model
-This project utilizes a [Data Structure] (e.g., relational database, JSON documents) to represent [Data Entity] data. The following fields are typically stored:
-   * [Field 1]: (Data type) - Description of the field's purpose in the business context.
-   * [Field 2]: (Data type) - Description of the field's purpose in the business context.
-   * ... (List all relevant fields)
+This project utilizes Python lists and dictionaries as the data structure to represent warehouse management data. The following fields are typically stored:
+
+### Product Data
+* product_id: (String) - Unique identifier for each product.
+* product_name: (String) - Name of the product.
+* category: (String) - Product category.
+* price: (Integer) - Selling price of the product.
+* stock: (Integer) - Available stock quantity.
+* supplier_name: (String) - Supplier providing the product.
+* supplier_price: (Integer) - Purchase price from supplier.
+* supply_date: (String) - Date the stock was supplied.
+* stock_supplied: (Integer) - Quantity of stock supplied.
+
+### Customer Data
+* customer_id: (String) - Unique identifier for each customer.
+* customer_name: (String) - Customer's name.
+* gender: (String) - Customer gender.
+* phone_number: (String) - Customer contact number.
+* address: (String) - Customer address.
+
+### Cashier Data
+* cashier_id: (String) - Unique identifier for each cashier.
+* cashier_name: (String) - Cashier's name.
+* username: (String) - Cashier login username.
+* password: (String) - Cashier login password.
+* shift: (String) - Cashier work shift.
+
+### Supplier Data
+* supplier_id: (String) - Unique identifier for each supplier.
+* supplier_name: (String) - Supplier company name.
+* contact_number: (String) - Supplier contact number.
+* address: (String) - Supplier address.
+* email: (String) - Supplier email address.
+  
+### Transaction Data
+* transaction_id: (String) - Unique identifier for each transaction.
+* transaction_date: (String) - Transaction date.
+* customer_name: (String) - Customer involved in the transaction.
+* cashier_name: (String) - Cashier handling the transaction.
+* payment_method: (String) - Payment method used.
+* products: (List) - List of purchased products.
+* total_price: (Integer) - Total transaction price.
 
 ## Contributing
-We welcome contributions to this project! Please feel free to open a pull request, sent to [your_email] or submit an issue if you encounter any problems or have suggestions for improvements.
-
+We welcome contributions to this project! Please feel free to open a pull request, sent to angel.adytha@gmail.com or submit an issue if you encounter any problems or have suggestions for improvements.

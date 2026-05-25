@@ -521,7 +521,7 @@ def view_record_menu(): # Displays all available records based on selected subme
             if not back_to_submenu():
                 break
 
-        elif submenu == "6":
+        elif submenu == "6": 
             break
 
         else:
