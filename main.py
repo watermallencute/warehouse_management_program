@@ -959,22 +959,34 @@ def create_record_menu(): # Add new records into lists
                         if product["product_name"].lower() == product_name.lower():
                             product_found = True
                             quantity = int(input("Enter quantity: "))
-                            sub_total = product["price"] * quantity
-                            transaction_product = {
-                                "product_name": product["product_name"],
-                                "quantity": quantity,
-                                "sub_total": sub_total
-                            }
 
-                            products.append(transaction_product)
-                            total_price += sub_total
-                            print("Product added to transaction!")
-                            break
+                            if quantity <= 0:
+                                print("Quantity must be greater than 0!")
+
+                            elif quantity > product["stock"]:
+                                print("Stock is not enough!")
+
+                            else:
+                                sub_total = product["price"] * quantity
+
+                                product["stock"] -= quantity
+
+                                transaction_product = {
+                                    "product_name": product["product_name"],
+                                    "quantity": quantity,
+                                    "sub_total": sub_total
+                                }
+
+                                products.append(transaction_product)
+                                total_price += sub_total
+
+                                print("Product added to transaction!")
+                                print(f"Remaining stock: {product['stock']}")
 
                     if not product_found:
                         print("Product not found!")
 
-                    again = input("Add another product (yes/no)? ").lower()
+                    again = input("\nAdd another product (yes/no)? ").lower()
 
                     if again == "no":
                         break
