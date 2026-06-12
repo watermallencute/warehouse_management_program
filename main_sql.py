@@ -1410,23 +1410,31 @@ def delete_record_menu(): # Delete unused records
                     found = True
 
                     print("\n===== PRODUCT DETAILS =====")
-                    print("-" * 65)
+                    print("-" * 157)
                     print(
                         f"{"ID":<10}  "
                         f"{"Product":<15}  "
                         f"{"Category":<15}  "
                         f"{"Price":<12}  "
                         f"{"Stock":<10}  "
+                        f"{"Supplier Name":<35}  "
+                        f"{"Supplier Price":<15}  "
+                        f"{"Supply Date":<15}  "
+                        f"{"Stock Supplied":<15}"
                     )
-                    print("-" * 65)
+                    print("-" * 157)
                     print(
                         f"{product["product_id"]:<10}  "
                         f"{product["product_name"]:<15}  "
                         f"{product["category"]:<15}  "
                         f"Rp{product["price"]:<10,}  "
                         f"{product["stock"]:<10}  "
+                        f"{product["supplier_name"]:<35}  "
+                        f"Rp{product["supplier_price"]:<13,}  "
+                        f"{product['supply_date'].strftime('%Y-%m-%d'):<15}  "
+                        f"{product["stock_supplied"]:<15}"
                     )
-                    print("-" * 65)
+                    print("-" * 157)
 
                     option = input("\nDo you want to delete this product (yes/no)? ").lower()
 
@@ -1592,8 +1600,8 @@ def delete_record_menu(): # Delete unused records
             transactions = service.get_all_transactions()
 
             details = [
-                t for t in transactions
-                if t["transaction_id"] == transaction_id
+                transaction for transaction in transactions
+                if transaction["transaction_id"] == transaction_id
             ]
 
             if not details:
@@ -1602,7 +1610,6 @@ def delete_record_menu(): # Delete unused records
             else:
                 print("\n===== TRANSACTION DETAILS =====")
                 print("-" * 145)
-
                 print(
                     f"{"No":<5}  "
                     f"{"ID":<10}  "
@@ -1618,18 +1625,18 @@ def delete_record_menu(): # Delete unused records
 
                 print("-" * 145)
 
-                for i, row in enumerate(details, start=1):
+                for i, detail in enumerate(details, start=1):
                     print(
                         f"{i:<5}  "
-                        f"{row['transaction_id']:<10}  "
-                        f"{row['transaction_date'].strftime('%Y-%m-%d'):<15}  "
-                        f"{row['customer_name']:<15}  "
-                        f"{row['cashier_name']:<15}  "
-                        f"{row['product_name']:<15}  "
-                        f"{row['quantity']:<10}  "
-                        f"Rp{row['sub_total']:<8,}  "
-                        f"Rp{row['total_price']:<15,}  "
-                        f"{row['payment_method']:<15}"
+                        f"{detail['transaction_id']:<10}  "
+                        f"{detail['transaction_date'].strftime('%Y-%m-%d'):<15}  "
+                        f"{detail['customer_name']:<15}  "
+                        f"{detail['cashier_name']:<15}  "
+                        f"{detail['product_name']:<15}  "
+                        f"{detail['quantity']:<10}  "
+                        f"Rp{detail['sub_total']:<8,}  "
+                        f"Rp{detail['total_price']:<15,}  "
+                        f"{detail['payment_method']:<15}"
                     )
 
                 print("-" * 145)
