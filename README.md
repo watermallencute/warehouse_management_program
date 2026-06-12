@@ -183,9 +183,9 @@ This separation improves maintainability and scalability.
 ## Clone Repository
 
 ```bash
-git clone https://github.com/<username>/<repository-name>.git
+git clone https://github.com/<watermallencute>/<warehouse_management_program>.git
 
-cd <repository-name>
+cd <warehouse_management_program>
 ```
 
 ## Install Dependencies
