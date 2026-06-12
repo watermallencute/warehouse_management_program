@@ -1255,43 +1255,45 @@ def update_record_menu(): # Update existing records
                                 product_price = product["price"]
                                 break
 
-                        column = input("\nEnter column name to update (quantity): ")
+                        while True:
+                            new_quantity = int(input("\nEnter new quantity: "))
+                            if new_quantity <= product["stock"]:
+                                new_subtotal = product_price * new_quantity
+                                detail_service = TransactionDetailService()
+                                detail_service.update_transaction_detail(
+                                    selected_product["detail_id"],
+                                    "quantity",
+                                    new_quantity
+                                )
 
-                        if column in ["quantity", "sub_total"]:
-                            new_quantity = int(input("Enter new quantity: "))
-                            new_subtotal = product_price * new_quantity
-                            detail_service = TransactionDetailService()
-                            detail_service.update_transaction_detail(
-                                selected_product["detail_id"],
-                                "quantity",
-                                new_quantity
-                            )
+                                detail_service.update_transaction_detail(
+                                    selected_product["detail_id"],
+                                    "sub_total",
+                                    new_subtotal
+                                )
 
-                            detail_service.update_transaction_detail(
-                                selected_product["detail_id"],
-                                "sub_total",
-                                new_subtotal
-                            )
+                                details = detail_service.get_all_transaction_details()
 
-                            details = detail_service.get_all_transaction_details()
+                                new_total = 0
+                                for detail in details:
+                                    if detail["transaction_id"] == transaction_id:
+                                        new_total += detail["sub_total"]
+                                transaction_service = TransactionService()
+                                transaction_service.update_total_price(
+                                    transaction_id,
+                                    new_total
+                                )
 
-                            new_total = 0
-                            for detail in details:
-                                if detail["transaction_id"] == transaction_id:
-                                    new_total += detail["sub_total"]
-                            transaction_service = TransactionService()
-                            transaction_service.update_total_price(
-                                transaction_id,
-                                new_total
-                            )
-
-                            print("Transaction updated successfully!")
-
-                        else:
-                            print("Column does not exist!")
+                                print("Transaction updated successfully!")
+                                break
+                            else:
+                                print("Stock is not enough!")
 
                     else:
-                        print("Invalid product number!")
+                        print("Column does not exist!")
+
+                else:
+                    print("Invalid product number!")
 
             if not back_to_submenu():
                 break
